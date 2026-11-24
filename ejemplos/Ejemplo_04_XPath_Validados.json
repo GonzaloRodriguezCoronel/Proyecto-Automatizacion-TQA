@@ -1,0 +1,41 @@
+{
+  "url": "http://127.0.0.1:8022/demo/login",
+  "path": "/demo/login",
+  "http_status": 200,
+  "title": "Demo acceso",
+  "inspection_mode": "HTML recuperado por HTTP (navegador restringido)",
+  "elements": [
+    {
+      "tag": "input",
+      "type": "",
+      "label": "usuario",
+      "id": "usuario",
+      "xpath": "//*[@id='usuario']",
+      "verified": true
+    },
+    {
+      "tag": "input",
+      "type": "password",
+      "label": "password",
+      "id": "password",
+      "xpath": "//*[@id='password']",
+      "verified": true
+    },
+    {
+      "tag": "button",
+      "type": "",
+      "label": "Entrar",
+      "id": "entrar",
+      "xpath": "//*[@id='entrar']",
+      "verified": true
+    },
+    {
+      "tag": "p",
+      "type": "",
+      "label": "resultado",
+      "id": "resultado",
+      "xpath": "//*[@id='resultado']",
+      "verified": true
+    }
+  ]
+}

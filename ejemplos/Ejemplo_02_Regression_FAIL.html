@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reporte 23245D2FB90A | TQA Automation Center</title><style>
+body{background:#f6f8fc;color:#172239;font:15px/1.6 system-ui,sans-serif;margin:0;padding:36px}
+main{max-width:1200px;margin:auto}header{background:#12233c;color:#fff;padding:30px;border-radius:18px}
+h1{margin:0;font-size:27px}p{margin:7px 0}.meta{opacity:.85}.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:24px 0}
+.metric{background:#fff;border:1px solid #dfe5ef;border-radius:12px;padding:18px}.metric span{display:block;color:#6a768e}
+.metric strong{display:block;font-size:26px}table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+th,td{text-align:left;border-bottom:1px solid #e5eaf1;padding:13px;vertical-align:top}th{background:#e9eef5;font-size:13px}
+.status{font-weight:800;padding:5px 9px;border-radius:7px;display:inline-block;background:#e2e8f0;color:#475569;white-space:nowrap}
+.status.PASS{background:#dcfce7;color:#166534}.status.FAIL{background:#fee2e2;color:#991b1b}
+.status.SKIPPED{background:#fef3c7;color:#92400e}.detail td{background:#f8fafc;padding:6px 14px}
+details{font-size:13px}details ol{padding-left:22px}details img{display:block;max-width:660px;width:95%;margin:14px 0;border:1px solid #ddd;border-radius:9px}
+footer{color:#64748b;margin:30px 0}@media(max-width:720px){.cards{grid-template-columns:repeat(2,1fr)}body{padding:12px}table{font-size:12px}}
+</style></head><body><main><header><h1>TQA Automation Center</h1><p>Reporte HTML de ejecución real</p>
+<p class="meta">ID: 23245D2FB90A · Aplicación: Demo local · Funcionales / Regression</p>
+<p class="meta">Inicio: 2026-11-16T19:30:34+00:00 · Fin: 2026-11-16T19:30:34+00:00 · Duración: 0.05 s</p>
+<p class="meta">Correo destinatario: demo@example.com · Estado: FINALIZADA</p></header>
+<div class="cards"><div class="metric"><span>total</span><strong>2</strong></div><div class="metric"><span>PASS</span><strong>1</strong></div><div class="metric"><span>FAIL</span><strong>1</strong></div><div class="metric"><span>SKIPPED</span><strong>0</strong></div><div class="metric"><span>NOT RUN</span><strong>0</strong></div></div><p><strong>Tasa de éxito:</strong> 50.0% (PASS / total de casos seleccionados).</p>
+<table><thead><tr><th>ID</th><th>Nombre</th><th>Tipo / suite</th><th>Estado</th><th>Duración</th><th>Observación</th></tr></thead><tbody><tr><td>TC-REG-001</td>
+<td>Correo inválido rechazado</td><td>Funcionales / Regression</td>
+<td><span class="status PASS">PASS</span></td>
+<td>0.010 s</td><td>Sin observaciones</td></tr>
+<tr class="detail"><td colspan="6"><details><summary>Pasos y evidencias - TC-REG-001</summary>
+<ol><li><strong>Enviar email inválido</strong><br>Esperado: HTTP 422<br>Obtenido: 422</li></ol></details></td></tr><tr><td>TC-REG-FAIL</td>
+<td>Fallo controlado de demostración</td><td>Funcionales / Regression</td>
+<td><span class="status FAIL">FAIL</span></td>
+<td>0.011 s</td><td>Comparar código (fallo intencional): esperado HTTP 201; obtenido 200</td></tr>
+<tr class="detail"><td colspan="6"><details><summary>Pasos y evidencias - TC-REG-FAIL</summary>
+<ol><li><strong>Comparar código (fallo intencional)</strong><br>Esperado: HTTP 201<br>Obtenido: 200</li></ol></details></td></tr></tbody></table>
+<footer>Los estados provienen de pruebas ejecutadas. Los errores de infraestructura se distinguen como NOT RUN. Documento HTML autónomo.</footer>
+</main></body></html>

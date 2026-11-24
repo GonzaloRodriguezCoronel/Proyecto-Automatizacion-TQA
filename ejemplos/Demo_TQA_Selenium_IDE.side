@@ -1,0 +1,137 @@
+{
+  "id": "tqa-demo-selenium",
+  "version": "2.0",
+  "name": "Demo TQA — Selenium IDE",
+  "url": "http://127.0.0.1:8022",
+  "tests": [
+    {
+      "id": "demo_login_pass",
+      "name": "Inicio de sesión válido",
+      "commands": [
+        {
+          "id": "cmd-p1",
+          "comment": "",
+          "command": "open",
+          "target": "/demo/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "cmd-p2",
+          "comment": "",
+          "command": "type",
+          "target": "id=usuario",
+          "targets": [
+            [
+              "css=#usuario",
+              "css:finder"
+            ]
+          ],
+          "value": "demo"
+        },
+        {
+          "id": "cmd-p3",
+          "comment": "",
+          "command": "type",
+          "target": "id=password",
+          "targets": [
+            [
+              "css=#password",
+              "css:finder"
+            ]
+          ],
+          "value": "Demo123!"
+        },
+        {
+          "id": "cmd-p4",
+          "comment": "",
+          "command": "click",
+          "target": "id=entrar",
+          "targets": [
+            [
+              "css=#entrar",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cmd-p5",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=resultado",
+          "targets": [
+            [
+              "css=#resultado",
+              "css:finder"
+            ]
+          ],
+          "value": "Acceso correcto"
+        }
+      ]
+    },
+    {
+      "id": "demo_login_fail",
+      "name": "Comprobación incorrecta intencional",
+      "commands": [
+        {
+          "id": "cmd-f1",
+          "comment": "",
+          "command": "open",
+          "target": "/demo/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "cmd-f2",
+          "comment": "",
+          "command": "type",
+          "target": "id=usuario",
+          "targets": [],
+          "value": "demo"
+        },
+        {
+          "id": "cmd-f3",
+          "comment": "",
+          "command": "type",
+          "target": "id=password",
+          "targets": [],
+          "value": "Demo123!"
+        },
+        {
+          "id": "cmd-f4",
+          "comment": "",
+          "command": "click",
+          "target": "id=entrar",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "cmd-f5",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=resultado",
+          "targets": [],
+          "value": "Acceso rechazado"
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "suite-demo",
+      "name": "Login de demostración",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "demo_login_pass",
+        "demo_login_fail"
+      ]
+    }
+  ],
+  "urls": [
+    "http://127.0.0.1:8022/demo/login"
+  ],
+  "plugins": []
+}

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#101728"><title>TQA Center | Laboratorio de pruebas CIARÁ</title><link rel="stylesheet" href="/static/style.css?v=8.6-botones-fix"></head>
+<body>
+<header class="app-header">
+  <div class="brand"><div class="brand-mark">✓</div><div><strong>TQA <span>Center</span></strong><small>AUTOMATIZACIÓN DE PRUEBAS</small></div></div>
+  <nav class="top-nav" aria-label="Menú principal"><button class="nav active" data-tab="runner">▷ Ejecutar</button><button class="nav" data-tab="stats">▥ Estadísticas</button><button class="nav" data-tab="history">▤ Historial</button><button class="nav" data-tab="assistant">✦ Asistente IA</button><button class="nav" data-tab="robot">⌘ Robot + XPath</button><button class="nav" data-tab="help">ⓘ Ayuda</button></nav>
+  <div id="connection" class="service-status"><span class="status-dot"></span> Conectando...</div>
+</header>
+<main class="app-main">
+  <section class="section" id="section-runner">
+    <div class="heading"><div><div class="eyebrow">LABORATORIO DE CALIDAD · CIARÁ</div><h1>Tus pruebas, claras y en un solo lugar</h1><p>Selecciona la prueba, observa Selenium y descarga tus resultados. Sin configuraciones innecesarias.</p></div><div class="heading-tag">● TQA ORIGINAL · v8.6</div></div>
+    <div class="metric-grid">
+      <article class="metric"><div class="metric-icon">▣</div><div><span>Ejecuciones</span><strong id="stat-runs">—</strong><small>Historial registrado</small></div></article>
+      <article class="metric"><div class="metric-icon cyan">✓</div><div><span>Casos PASS</span><strong id="stat-pass">—</strong><small>Última ejecución</small></div></article>
+      <article class="metric"><div class="metric-icon coral">✕</div><div><span>Casos FAIL</span><strong id="stat-fail">—</strong><small>Última ejecución</small></div></article>
+      <article class="metric"><div class="metric-icon amber">◷</div><div><span>Éxito histórico</span><strong id="stat-rate">—</strong><small>Casos terminados</small></div></article>
+    </div>
+    <div class="workbench">
+      <aside class="surface config-surface">
+        <div class="panel-heading"><div><span class="micro">01 · CONFIGURACIÓN</span><h2>¿Qué quieres probar?</h2><p>CIARÁ · pruebas funcionales y no funcionales</p></div></div>
+        <!-- Formulario simplificado SOBRE LA PANTALLA ORIGINAL, sin sustituir el monitor de Selenium. -->
+        <form id="ciara-easy-form" class="ciara-easy-form">
+          <div class="connection-row"><div id="ciara-easy-connection" class="ciara-link-state" role="status">Comprobando CIARÁ…</div><button type="button" id="ciara-toggle-url" class="connection-edit" title="Cambiar la URL local de CIARÁ">Cambiar URL</button></div>
+          <div id="ciara-connection-editor" class="connection-editor hidden"><label for="ciara-web-url">Dirección real donde abre CIARÁ</label><input id="ciara-web-url" type="url" inputmode="url" placeholder="http://127.0.0.1:8000/login"><button type="button" id="ciara-save-url" class="secondary-btn">Guardar y comprobar</button><small id="ciara-url-feedback">Escríbela una sola vez; TQA la recuerda en tu computadora. No uses la dirección de una pantalla Laravel vacía.</small></div>
+          <div id="ciara-login-status" class="ciara-login-status" role="status">Comprobando acceso de prueba…</div>
+          <div class="test-category-switch" role="group" aria-label="Tipo de pruebas">
+            <button type="button" class="test-group-btn active" data-group="Funcionales">✓ Funcionales</button>
+            <button type="button" class="test-group-btn" data-group="No funcionales">◷ No funcionales</button>
+          </div>
+          <div class="quick-headline"><strong>1. Elige una prueba</strong><small>Una tarjeta = una suite</small></div>
+          <div id="ciara-test-cards" class="ciara-test-cards" role="group" aria-label="Categoría de prueba"></div>
+          <input type="hidden" id="ciara-easy-type" value="rapida">
+          <div id="ciara-easy-explanation" class="ciara-hint selection-description" aria-live="polite">Smoke: valida que CIARÁ abra y muestra sus pasos en el monitor.</div>
+          <details id="ciara-select-cases" class="quick-optional">
+            <summary>▤ Elegir casos específicos <span class="optional-tag">opcional</span></summary>
+            <div id="ciara-preview-status" class="ciara-hint">Por defecto se ejecuta toda la suite.</div>
+            <div id="ciara-case-checks" class="ciara-case-checks"></div>
+            <button type="button" id="ciara-all-cases" class="secondary-btn tiny-btn">Seleccionar todos</button>
+          </details>
+          <label for="ciara-easy-email" class="numbered-label"><span>2</span> Correo para recibir el informe</label>
+          <input type="email" id="ciara-easy-email" autocomplete="email" required maxlength="254" placeholder="tu.correo@gmail.com">
+          <div id="ciara-mail-status" class="micro-help">Al terminar recibirás dos archivos: PDF detallado y resumen HTML.</div>
+          <button class="primary-btn run-prominent" type="submit" id="ciara-easy-run">▶ Ejecutar pruebas</button>
+          <p id="ciara-easy-error" class="form-error" role="alert"></p>
+          
+        </form>
+        <div class="quick-tool-row" aria-label="Herramientas conservadas"><span class="tools-label">Herramientas que ya conoces</span>
+          <button type="button" id="open-selenium-tools" class="quick-tool">◉ Selenium IDE</button>
+          <button type="button" id="open-robot-tools" class="quick-tool">⌘ Robot + XPath</button>
+          <button type="button" id="open-ai-tools" class="quick-tool">✦ Asistente IA</button>
+        </div>
+        <details id="advanced-config" class="advanced-config" aria-label="Herramientas avanzadas Selenium IDE"><summary>⚙ Editor Selenium IDE <span>Importar archivos .side, XPath, creación de casos</span></summary><button type="button" id="close-selenium-tools" class="close-advanced">✕ Cerrar</button>
+        <form id="unified-run-form" class="ciara-legacy-config">
+          <label for="target">Aplicación bajo prueba</label><select id="target" required></select>
+          <label>Motor de automatización</label>
+          <div class="engine-tabs" role="group" aria-label="Motor de pruebas"><button type="button" class="engine active" data-engine="standard">◈ Estándar</button><button type="button" class="engine" data-engine="selenium">◉ Selenium IDE</button><button type="button" class="engine" data-engine="robot">⌘ Robot</button></div>
+          <div id="standard-config">
+            <label for="kind">Tipo de prueba</label><select id="kind"><option>Funcionales</option><option>No funcionales</option></select>
+            <div class="flex-title"><label>Suite / categoría</label><small id="suite-count">0 casos</small></div>
+            <div id="suite-grid" class="suite-grid"></div><select id="suite" class="visually-hidden" aria-label="Suite seleccionada"></select>
+            <div class="segmented"><label><input type="radio" name="selection" value="full" checked> Toda la categoría</label><label><input type="radio" name="selection" value="specific"> Casos sueltos</label></div>
+            <div id="case-picker" class="case-picker"></div>
+          </div>
+          <div id="selenium-config" class="hidden">
+            <div class="notice"><span>●</span> Crea pruebas sobre pantallas reales, prepara un recorrido general del sitio o reproduce archivos .side importados. Los casos se ejecutan con Selenium WebDriver.</div>
+            <details class="generator-panel" id="selenium-general-panel" open>
+              <summary>◈ Crear prueba general del sistema</summary>
+              <p class="generator-intro">Descubre los enlaces HTML internos y crea <b>un caso por pantalla</b> con navegación y verificación real. Este recorrido es de solo lectura: no hace clic en botones ni comprueba reglas de negocio.</p>
+              <label for="general-start">Ruta desde donde explorar</label><input id="general-start" type="text" value="/demo/" maxlength="180" placeholder="/demo/">
+              <label for="general-pages">Máximo de pantallas</label><select id="general-pages"><option value="5">5 páginas</option><option selected value="8">8 páginas</option><option value="12">12 páginas</option><option value="16">16 páginas</option></select>
+              <button type="button" class="secondary-btn generator-create" id="general-create">◈ Descubrir pantallas y generar suite general</button>
+              <div id="general-status" class="run-muted" role="status"></div>
+            </details>
+            <details class="generator-panel" id="selenium-custom-panel" open>
+              <summary>✦ Crear prueba personalizada en cualquier pantalla</summary>
+              <p class="generator-intro">Genera una prueba automáticamente desde el HTML real, o construye tus propios pasos y verificaciones. También sirve para pantallas distintas del login.</p>
+              <label for="custom-kind">Tipo de prueba</label><select id="custom-kind"><option>Funcionales</option><option>No funcionales</option></select>
+              <label for="custom-category">Suite / categoría</label><select id="custom-category"></select>
+              <label for="custom-name">Nombre del caso</label><input id="custom-name" type="text" maxlength="90" placeholder="Ej.: Validar contenido del reporte" value="Comprobar página de reportes">
+              <label for="custom-path">Ruta de la pantalla a probar</label><input id="custom-path" type="text" value="/demo/reportes" maxlength="180" placeholder="/reportes">
+              <button type="button" id="custom-inspect" class="secondary-btn small-wide-btn">⌕ Detectar elementos y enlaces de la página</button>
+              <button type="button" id="custom-auto" class="secondary-btn generator-create">✦ Generar una prueba automática de esta pantalla</button>
+              <p id="custom-inspect-status" class="run-muted" role="status"></p>
+              <label for="custom-select-element">Elemento detectado</label><select id="custom-select-element"><option value="css=body">Documento (body)</option></select>
+              <label for="custom-action">Acción del nuevo paso</label>
+              <select id="custom-action"><option value="assertElementPresent">Comprobar que existe el elemento</option><option value="waitForElementVisible">Comprobar que es visible</option><option value="assertText">Comprobar texto exacto</option><option value="assertValue">Comprobar valor del campo</option><option value="click">Hacer clic en un botón/enlace</option><option value="type">Escribir dato de prueba</option><option value="select">Elegir una opción</option><option value="assertElementNotPresent">Comprobar ausencia de elemento</option><option value="assertTitle">Comprobar título de página</option><option value="setWindowSize">Cambiar tamaño de ventana</option><option value="pause">Esperar milisegundos</option></select>
+              <label for="custom-step-target">Selector / título esperado / tamaño</label><input id="custom-step-target" type="text" value="css=body" maxlength="190" placeholder="id=titulo, css=h1, xpath=//button...">
+              <label for="custom-step-value">Texto esperado o dato de prueba (si aplica)</label><input id="custom-step-value" type="text" maxlength="180" placeholder="Ej.: Reportes de demostración">
+              <button type="button" id="custom-add" class="secondary-btn small-wide-btn">＋ Añadir paso de prueba</button>
+              <div id="custom-step-list" class="custom-step-list"></div>
+              <label class="custom-confirm"><input type="checkbox" id="custom-allow"> Autorizo interacciones (clic, escritura, cambios) únicamente con datos de prueba</label>
+              <button type="button" id="custom-create" class="secondary-btn generator-create">✓ Guardar prueba y seleccionar para ejecutar</button>
+              <p id="custom-create-status" class="run-muted" role="status"></p>
+            </details>
+            <details class="generator-panel" id="selenium-generator">
+              <summary>▤ Plantillas rápidas (login, rendimiento, accesibilidad)</summary>
+              <p class="generator-intro">Elige qué comprobar. TQA generará los pasos y guardará la prueba en el catálogo Selenium.</p>
+              <div class="generator-fields">
+                <label for="selenium-kind">Tipo de prueba</label>
+                <select id="selenium-kind"><option value="Funcionales">Funcionales</option><option value="No funcionales">No funcionales</option></select>
+                <label for="selenium-category">Categoría</label><select id="selenium-category"></select>
+                <label for="selenium-template">¿Qué deseas comprobar?</label><select id="selenium-template"></select>
+                <label for="selenium-name">Nombre del nuevo caso (opcional)</label><input id="selenium-name" type="text" maxlength="90" placeholder="Ej.: Validar pantalla de acceso">
+                <label for="selenium-path">Ruta de la pantalla</label><input id="selenium-path" type="text" maxlength="180" value="/demo/login" placeholder="/demo/login">
+                <div id="selenium-selector-row" class="hidden"><label for="selenium-selector">Localizador del elemento</label><input id="selenium-selector" type="text" maxlength="190" value="id=usuario" placeholder="id=usuario o xpath=//button[@id='entrar']"></div>
+                <div id="selenium-limit-row" class="hidden"><label for="selenium-limit">Límite de navegación en milisegundos</label><input id="selenium-limit" type="number" min="100" max="60000" value="3000"></div>
+              </div>
+              <p id="selenium-creation-hint" class="generator-hint">Genera un caso listo para ejecutar. Los resultados se obtienen del navegador, no de la plantilla.</p>
+              <button type="button" id="selenium-create" class="secondary-btn generator-create">＋ Generar y guardar prueba</button>
+              <p id="selenium-create-status" role="status" class="run-muted"></p>
+            </details>
+            <label for="side-project">Proyecto Selenium <span class="helper-muted">(demo, creado o importado)</span></label><select id="side-project"></select>
+            <a id="selenium-export" class="small-action hidden" download>↓ Exportar proyecto .side</a>
+            <div class="flex-title"><label>Casos grabados</label><small>Selecciona los que ejecutarás</small></div>
+            <div id="side-test-picker" class="case-picker"></div>
+            <details class="advanced"><summary>＋ Importar un proyecto .side propio (opcional)</summary><div id="side-import-form"><label for="side-file">Archivo exportado desde Selenium IDE</label><input id="side-file" type="file" accept=".side,application/json"><button type="button" id="side-import-btn" class="secondary-btn">Importar proyecto</button><p id="side-import-status" class="run-muted"></p></div><small>La demo funciona sin importar un archivo. Solo necesitas .side para ejecutar una grabación propia.</small></details>
+            <details class="advanced"><summary>Ver comandos y XPath del proyecto</summary><div id="side-preview" class="side-preview">Selecciona un proyecto.</div></details>
+          </div>
+          <div id="robot-config" class="hidden"><div class="notice">El inspector analiza una página HTML autorizada, verifica sus elementos y genera archivos .robot y .feature.</div><label for="robot-path">Ruta de la página</label><input id="robot-path" type="text" value="/demo/login" maxlength="180"><small class="field-help">Ejemplo para Demo local: /demo/login</small></div>
+          <label for="email">Correo destinatario del informe</label><input id="email" type="email" required autocomplete="email" maxlength="254" placeholder="tu.correo@ejemplo.com"><div class="smtp-indicator" id="smtp-tip">Comprobando SMTP...</div>
+          <div id="selenium-visual-config" class="hidden"><label>Visualización de Selenium</label><div class="segmented" id="view-mode-picker"><label><input type="radio" name="viewmode" value="integrated" checked> Dentro del panel</label><label><input type="radio" name="viewmode" value="visible"> Ventana visible</label></div>
+          <small class="field-help">La vista integrada actualiza capturas durante la prueba; no abre una ventana externa. No es video continuo.</small></div>
+          <button type="submit" class="primary-btn" id="run-btn"><span>▶</span> Ejecutar pruebas</button><p class="form-error" id="form-error" role="alert"></p>
+        </form>
+        </details>
+      </aside>
+      <section class="surface monitor-surface">
+        <div class="monitor-heading"><div><span class="live-kicker"><i class="status-dot"></i> MONITOR DE EJECUCIÓN</span><h2 id="monitor-title">Preparado para iniciar</h2><p id="monitor-description">Selecciona las pruebas y pulsa Ejecutar.</p></div><span id="monitor-status" class="status-chip">EN ESPERA</span></div>
+        <div class="timeline"><div class="stage"><span id="stage-1" class="stage-dot">1</span><small>Preparación</small></div><div class="stage"><span id="stage-2" class="stage-dot">2</span><small>Ejecución</small></div><div class="stage"><span id="stage-3" class="stage-dot">3</span><small>Validación</small></div><div class="stage"><span id="stage-4" class="stage-dot">4</span><small>Informe</small></div></div>
+        <div class="monitor-viewport"><div class="browser-toolbar"><div class="traffic"><i></i><i></i><i></i></div><span>Vista del sistema bajo prueba</span><span id="browser-target">demo / navegador automatizado</span></div>
+          <div class="browser-content" id="browser-content"><div class="browser-empty" id="browser-empty"><div class="window-emblem">◉</div><strong>El navegador aparecerá aquí</strong><p>Durante Selenium IDE verás capturas reales que se actualizan paso a paso.<br>Para pruebas de API se mostrarán los comandos y sus resultados.</p></div><img id="side-live-shot" class="browser-shot hidden" alt="Captura actual de la prueba automatizada"></div>
+          <div class="browser-foot"><span id="capture-caption">Esperando una ejecución</span><span id="side-live-counter">0 / 0 pasos</span></div>
+        </div>
+        <div class="progress-heading"><span id="case-progress-label">Progreso de la ejecución</span><b id="progress-percent">0%</b></div><div class="progress-track"><div id="side-live-bar-fill" class="progress-fill"></div></div>
+        <div class="step-box"><div class="flex-title"><h3>Actividad en tiempo real</h3><small>Actualización automática</small></div><div id="side-live-log" class="live-log" role="log" aria-live="polite"><div class="log-row"><span class="log-time">—</span> Sin eventos todavía.</div></div></div>
+        <div class="exports"><a id="download-pdf" class="export-link disabled" aria-disabled="true">▤ Informe PDF</a><a id="download-html" class="export-link disabled" aria-disabled="true">⌘ Informe HTML</a><a id="ciara-zip" class="export-link disabled" aria-disabled="true">⇩ Reportes completos ZIP</a><button id="open-evidence" type="button" class="export-link" disabled>▧ Evidencias</button><button type="button" id="refresh-monitor" class="export-link">↻ Actualizar</button></div>
+        <div id="monitor-evidence" class="evidence-grid hidden"></div>
+      </section>
+      <aside class="surface summary-surface">
+        <div class="panel-heading"><div><span class="micro">03 · RESULTADOS</span><h2>Seguimiento de todos los casos</h2><p id="summary-caption">PENDIENTE → EN CURSO → PASS / FAIL / NOT RUN</p></div></div>
+        <div id="summary-statline" class="summary-statline"><div><strong id="sum-pass">0</strong><span>PASS</span></div><div><strong id="sum-fail">0</strong><span>FAIL</span></div><div><strong id="sum-other">0</strong><span>OTROS</span></div></div>
+        <div id="live-case-list" class="live-case-list"><div class="case-placeholder">Aún no se ha ejecutado ninguna prueba.</div></div>
+        <div class="assistant-mini"><div class="assistant-mini-title"><span class="sparkle">✦</span><b>Asistente QA</b><small id="ai-status-mini">Disponible</small></div><p id="assistant-summary">Cuando termine una ejecución, aquí verás un resumen de los resultados. La IA no altera PASS ni FAIL.</p><button type="button" id="analyze-last" class="secondary-btn" disabled>✦ Analizar el último fallo</button><div id="mini-ai-output" class="mini-ai-output hidden"></div></div>
+        <div class="mail-card"><span>✉</span><div><b>Reporte por correo</b><p id="email-outcome">Se enviarán PDF y HTML al finalizar, si SMTP está configurado.</p></div></div>
+        <div id="current-run" class="hidden"></div>
+      </aside>
+    </div>
+  </section>
+  <section id="section-stats" class="section hidden"><div class="heading"><div><div class="eyebrow">ANALÍTICA DE CALIDAD</div><h1>Estadísticas de las pruebas</h1><p>Indicadores calculados a partir de ejecuciones guardadas.</p></div><button id="stats-refresh" class="secondary-btn">↻ Actualizar métricas</button></div><div id="stats-cards" class="metric-grid"></div><div class="two-col"><div class="surface section-card"><h2>Resultados por estado</h2><div id="stats-status"></div></div><div class="surface section-card"><h2>Ejecuciones recientes por día</h2><div id="stats-daily"></div></div></div><div class="surface section-card"><h2>Calidad por suite</h2><div id="stats-suites"></div></div></section>
+  <section id="section-history" class="section hidden"><div class="heading"><div><div class="eyebrow">TRAZABILIDAD</div><h1>Historial y reportes</h1><p>Consulta ejecuciones anteriores, sus resultados y evidencias.</p></div><button id="refresh-history" class="secondary-btn">↻ Actualizar</button></div><div class="surface section-card"><div id="history-body"></div></div></section>
+  <section id="section-assistant" class="section hidden"><div class="heading"><div><div class="eyebrow">ASISTENTE DE CALIDAD</div><h1>Asistente IA y Gherkin</h1><p>Propuestas revisables y análisis de observaciones reales, sin falsificar resultados.</p></div></div><div class="surface section-card assistant-full"><label for="ai-case">Caso de prueba</label><select id="ai-case"></select><label for="ai-mode">Tipo de ayuda</label><select id="ai-mode"><option value="gherkin">Generar Gherkin natural (Given, When, And, Then)</option><option value="analysis">Analizar un fallo</option></select><button id="ai-btn" class="primary-btn">✦ Generar propuesta</button><div id="ai-provider" class="tag">En espera</div><pre id="ai-output">Selecciona un caso para generar una propuesta.</pre></div></section>
+  <section id="section-robot" class="section hidden"><div class="heading"><div><div class="eyebrow">INSPECCIÓN WEB Y EXPORTACIÓN</div><h1>Robot Framework + XPath</h1><p>Inspecciona una página autorizada, obtiene XPath verificables y genera scripts.</p></div></div><div class="two-col"><div class="surface section-card"><form id="robot-form"><label for="robot-target">Aplicación</label><select id="robot-target"><option>Demo local</option><option>CIARÁ</option></select><label for="robot-path-panel">Ruta relativa</label><input id="robot-path-panel" type="text" value="/demo/login" maxlength="180"><label for="robot-email">Correo destinatario</label><input id="robot-email" type="email" maxlength="254" required placeholder="tu.correo@ejemplo.com"><button type="submit" id="robot-btn" class="primary-btn">▶ Inspeccionar y ejecutar</button><p id="robot-error" class="form-error"></p></form></div><div class="surface section-card"><h2>Estado y archivos</h2><div id="robot-result" role="status" aria-live="polite">Aún no se ha ejecutado.</div></div></div><div class="surface section-card"><h2>Gherkin generado</h2><pre id="robot-gherkin">Ejecuta una inspección para generar el escenario.</pre><h2>Script Robot</h2><pre id="robot-code">Aquí aparecerá el código .robot.</pre><h2>XPath comprobados</h2><div id="robot-locators">Aquí aparecerán los localizadores verificados.</div></div></section>
+  <section id="section-help" class="section hidden"><div class="heading"><div><div class="eyebrow">AYUDA</div><h1>Cómo utilizar TQA Center</h1><p>El proceso completo de automatización y reporte desde una sola aplicación.</p></div></div><div class="help-grid"><div class="surface section-card"><h2>1. Seleccionar</h2><p>Elige aplicación, motor y casos. Para Selenium IDE, la demo integrada funciona sin cargar archivos.</p></div><div class="surface section-card"><h2>2. Ejecutar</h2><p>Estándar prueba API y rendimiento, Selenium automatiza interfaz y Robot genera scripts.</p></div><div class="surface section-card"><h2>3. Observar</h2><p>Con Selenium en modo integrado, las capturas del navegador se actualizan tras cada paso dentro del panel. No es un video continuo.</p></div><div class="surface section-card"><h2>4. Documentar</h2><p>PDF + HTML + evidencias + historial. El correo se envía si SMTP está configurado.</p></div><div class="surface section-card"><h2>5. Selenium IDE</h2><p>Genera casos a partir de cualquier pantalla HTML autorizada y suites generales de navegación. Los proyectos .side de Selenium IDE se pueden importar y ejecutar con WebDriver. Las métricas de rendimiento, accesibilidad y responsividad se ejecutan con comprobaciones propias de TQA; no son comandos nativos .side. Carga/estrés requiere otro motor.</p></div><div class="surface section-card"><h2>6. Entorno seguro</h2><p>Utiliza cuentas de prueba y aplicaciones autorizadas. Los resultados PASS/FAIL siempre proceden de las comprobaciones reales.</p></div></div></section>
+</main><script src="/static/app.js?v=8.6-botones-fix"></script><script src="/static/ciara_original.js?v=8.6-botones-fix"></script></body></html>

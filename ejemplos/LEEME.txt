@@ -1,0 +1,17 @@
+EJEMPLOS DE EJECUCIÓN
+
+Ejemplo_01_Smoke_PASS.*: dos casos reales PASS.
+Ejemplo_02_Regression_FAIL.*: un PASS y un FAIL controlado, ver observación.
+Ejemplo_03_E2E_Con_Capturas.*: inicio de sesión de prueba con capturas del navegador.
+
+Estos archivos fueron generados con el código del proyecto en entorno de
+preparación. No sustituyen la ejecución del estudiante en su equipo.
+
+En la aplicación real, PDF y HTML se generan automáticamente dentro de reportes/.
+
+Ejemplo_04_Robot_Gherkin.feature / Ejemplo_04_Prueba_Automatizada.robot /
+Ejemplo_04_XPath_Validados.json: generados a partir del HTML real de /demo/login;
+los XPath fueron verificados. Son ejemplos de código, NO se afirma que Robot
+Framework ejecutó estos archivos en este entorno de preparación.
+Para comprobar PASS real ejecuta Robot + XPath en tu Windows con Chrome y
+Robot Framework instalados; el resultado verdadero será robot_output.xml.

@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.pytest_cache/
+reportes/*
+!reportes/.gitkeep
+evidencias/*
+!evidencias/.gitkeep
+historial/*
+!historial/.gitkeep
+proyectos_side/*
+!proyectos_side/.gitkeep
+*.mp4
+
+ciara_web_local.json

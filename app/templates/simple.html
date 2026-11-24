@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>TQA Fácil · Centro de pruebas Selenium</title>
+  <link rel="stylesheet" href="/static/simple.css" />
+  <script src="/static/simple.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">T</span><span>TQA <strong>Fácil</strong><small>Automation Center · v8</small></span></div>
+    <div class="top-right"><span class="version">Basado en TQA v7</span><a href="/avanzado" class="advanced-link" title="Opciones avanzadas (opcionales)">Modo avanzado ↗</a></div>
+  </header>
+  <main class="layout">
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse-dot"></span> PRUEBAS SELENIUM</div>
+      <h1>Prueba tu sistema<br /><em>en pocos clics.</em></h1>
+      <p>Selecciona CIARÁ, elige el tipo de prueba y presiona ejecutar. Verás el avance, las capturas reales y los reportes aquí mismo.</p>
+      <div class="features"><span>✓ Sin código</span><span>✓ Seguimiento en vivo</span><span>✓ PDF, HTML y evidencias</span></div>
+    </section>
+
+    <section class="panel setup-panel" aria-labelledby="setup-title">
+      <div class="section-title"><span class="step">01</span><div><h2 id="setup-title">¿Qué sistema quieres probar?</h2><p>Selecciona una aplicación que ya esté instalada.</p></div></div>
+      <div class="target-line">
+        <label class="field"><span>Aplicación</span><select id="target" aria-label="Aplicación a probar"><option>Cargando…</option></select></label>
+        <button class="btn-secondary" id="check" type="button">Comprobar conexión</button>
+      </div>
+      <div id="connection" class="connection neutral" aria-live="polite">Para CIARÁ, primero enciende su sistema web.</div>
+      <details class="more"><summary>Opciones de ejecución (opcional)</summary>
+        <div class="more-inner">
+          <label class="field"><span>Ruta inicial en CIARÁ</span><input id="page-path" placeholder="/" value="/" spellcheck="false" /><small>Por ejemplo: <code>/login</code> si quieres revisar esa pantalla.</small></label>
+          <label class="toggle"><input type="checkbox" id="visible" checked /><span>Mostrar Chrome mientras Selenium ejecuta</span></label>
+          <p>Si el frontend de CIARÁ abre en un puerto distinto a la API, configura <code>TQA_WEB_NAME</code> y <code>TQA_WEB_URL</code> en el archivo <code>.env</code> y reinicia TQA.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="panel" aria-labelledby="types-title">
+      <div class="section-title"><span class="step">02</span><div><h2 id="types-title">¿Qué tipo de prueba quieres?</h2><p>Elige una opción. TQA prepara los casos automáticamente.</p></div></div>
+      <div class="test-grid" id="test-types"><div class="skeleton">Cargando pruebas disponibles…</div></div>
+      <div class="action-line"><button class="btn-primary" type="button" id="start"><span>▶</span> Ejecutar prueba</button><span id="action-help">No necesitas configurar scripts manualmente.</span></div>
+      <div id="error" role="alert" class="error" hidden></div>
+    </section>
+
+    <section class="panel result-panel" id="progress-panel" aria-live="polite" hidden>
+      <div class="section-title"><span class="step">03</span><div><h2>Seguimiento de la ejecución</h2><p id="run-subtitle">Iniciando Selenium…</p></div><span id="run-status" class="status-chip active">Preparando</span></div>
+      <div class="progress-meta"><strong id="progress-counter">0 de 0 casos</strong><span id="progress-percent">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="monitor-grid">
+        <div class="monitor-card">
+          <div class="card-header"><strong>Vista de Selenium</strong><span>Capturas tomadas por Chrome durante la prueba</span></div>
+          <div class="browser-frame" id="browser-frame"><div class="empty-screenshot"><span>▣</span><strong>Esperando la primera captura…</strong><small>La imagen aparecerá aquí después del primer paso.</small></div></div>
+        </div>
+        <div class="events-card"><div class="card-header"><strong>Pasos en tiempo real</strong><span>Resultados de cada acción</span></div><ol id="events" class="events"><li>Preparando navegador y casos…</li></ol></div>
+      </div>
+      <div id="result-summary" class="result-summary" hidden>
+        <div class="summary-title"><h3>Resultado de la ejecución</h3><span id="finished-at"></span></div>
+        <div class="stats"><div><strong id="n-pass">0</strong><span>PASS</span></div><div><strong id="n-fail">0</strong><span>FAIL</span></div><div><strong id="n-other">0</strong><span>Otros</span></div></div>
+        <div id="case-list" class="case-list"></div>
+        <div class="downloads"><a id="dl-pdf" target="_blank" rel="noopener" href="#">↓ Reporte PDF</a><a id="dl-html" target="_blank" rel="noopener" href="#">↓ Reporte HTML</a><a id="dl-csv" href="#">↓ Excel / CSV</a><a id="dl-json" href="#">↓ JSON</a><a class="all" id="dl-zip" href="#">↓ Descargar todo ZIP</a></div>
+      </div>
+    </section>
+
+    <section class="history" aria-labelledby="history-title">
+      <div class="history-head"><div><h2 id="history-title">Últimas ejecuciones</h2><p>Reportes que quedaron guardados en este equipo</p></div><button type="button" id="refresh-history" class="text-button">Actualizar ↻</button></div>
+      <div id="history-list" class="history-list"><p class="muted">Consultando historial…</p></div>
+    </section>
+    <footer>TQA Fácil funciona en tu computadora. Ejecuta pruebas solo contra sistemas propios o autorizados. Las pruebas automáticas no modifican los datos de CIARÁ.</footer>
+  </main>
+</body>
+</html>
