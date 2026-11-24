@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TQA Center  — Automatización y aseguramiento de la calidad
 
 **Proyecto integrador de Testing y Aseguramiento de la Calidad (TQA)**  
@@ -329,3 +330,8 @@ Para demostrar el funcionamiento ante el docente:
 ---
 
 **Trabajo académico desarrollado en el marco de la asignatura de Testing y Aseguramiento de la Calidad — UNIFRANZ, La Paz, Bolivia.**
+=======
+# Proyecto de Automatizacion TQA
+
+Repositorio para guardar scripts, configuraciones y pruebas automatizadas.
+>>>>>>> origin/main
